@@ -19,8 +19,13 @@ public class managerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameController = GameObject.FindWithTag("GameController").GetComponent<gameManager>();
-        gameController.loadDoorsCallback(gameObject);
+        if (GameObject.FindWithTag("GameController") == null) {
+            Debug.Log("No GC");
+        }
+        else {
+            gameController = GameObject.FindWithTag("GameController").GetComponent<gameManager>();
+            gameController.loadDoorsCallback(gameObject);
+        }
     }
 
     // Update is called once per frame

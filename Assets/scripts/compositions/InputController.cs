@@ -11,6 +11,11 @@ public class InputController : MonoBehaviour
     public static InputController control;
 
     public GameObject swingAttack;
+    public float fireRate = 30;
+    private float currentFireRate = 0;
+    private Animator anim;
+
+    private int moveState = 0; 
 
     void Awake()
     {
@@ -34,31 +39,67 @@ public class InputController : MonoBehaviour
     void Start()
     {
         movement = GetComponent<Movement>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float dirX = Input.GetAxisRaw("Horizontal");
-        float dirY = Input.GetAxisRaw("Vertical");
+        float dirX = Input.GetAxisRaw("HorizontalMove");
+        float dirY = Input.GetAxisRaw("VerticalMove");
         movement.Move(dirX, dirY);
 
-        if (dirX > 0) {
-            transform.rotation = Quaternion.Euler(0, 0, 90);
+        if (dirX == 0 && dirY == 0) {
+            anim.SetBool("isRunning", false);
         }
-        else if (dirY > 0) {
-            transform.rotation = Quaternion.Euler(0, 0, 180);
-        }
-        else if (dirX < 0) {
-            transform.rotation = Quaternion.Euler(0, 0, 270);
-        }
-        else if (dirY < 0) {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+        else {
+            anim.SetBool("isRunning", true);
         }
 
-        if (Input.GetButtonDown("Fire1")) {
-            // Instantiate the projectile at the position and rotation of this transform
-            GameObject clone = Instantiate(swingAttack, transform.position, Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z - 90));
+        dirX = Input.GetAxisRaw("HorizontalLook");
+        dirY = Input.GetAxisRaw("VerticalLook");
+
+
+        if (dirX > 0) {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            moveState = 1;
+        }
+        else if (dirY > 0) {
+            //transform.rotation = Quaternion.Euler(0, 180, 0);
+            moveState = 2;
+        }
+        else if (dirX < 0) {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            moveState = 3;
+        }
+        else if (dirY < 0) {
+            //transform.rotation = Quaternion.Euler(0, 0, 0);
+            moveState = 4;
+        }
+
+        if (currentFireRate >= 0) {
+            currentFireRate -= 60 * Time.deltaTime;
+        }
+        else {
+            if (Input.GetButtonDown("Fire1") || dirX != 0 || dirY != 0) {
+                currentFireRate = fireRate;
+                if (moveState == 1) {
+                    // Instantiate the projectile at the position and rotation of this transform
+                    GameObject clone = Instantiate(swingAttack, transform.position, Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z));
+                }
+                else if (moveState == 2) {
+                    // Instantiate the projectile at the position and rotation of this transform
+                    GameObject clone = Instantiate(swingAttack, transform.position, Quaternion.Euler(0, 0, 90));
+                }
+                else if (moveState == 3) {
+                    // Instantiate the projectile at the position and rotation of this transform
+                    GameObject clone = Instantiate(swingAttack, transform.position, Quaternion.Euler(0, 180, 0));
+                }
+                else if (moveState == 4) {
+                    // Instantiate the projectile at the position and rotation of this transform
+                    GameObject clone = Instantiate(swingAttack, transform.position, Quaternion.Euler(0, 0, 270));
+                }
+            }
         }
     }
 }
