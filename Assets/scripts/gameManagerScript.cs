@@ -10,10 +10,10 @@ public class gameManager : MonoBehaviour
     private string[,] map = new string[,]
     {
         { null, null, null, null, null },
-        { "FourSwarmRoom", null, "FourSwarmRoom", null, null },
-        { "SpikeRoom", "SpikeRoom", "FourSwarmRoom", null, null },
+        { "BossRoom", null, "SnailRoom", null, null },
+        { "FourSwarmRoom", "DiscShooterRoom", "StartRoom", null, null },
         { null, null, "SpikeRoom", null, null },
-        { null, null, null, null, null }
+        { null, null, "FourShooterRoom", "ItemRoom", null }
     };
 
     // temp measure
@@ -44,18 +44,44 @@ public class gameManager : MonoBehaviour
         //Otherwise check if the control instance is not this one
         else if (control != this)
         {
-            //In case there is a different instance destroy this one.
-            Destroy(gameObject);
+            if (SceneManager.GetActiveScene().name != "StartScreen") {
+                //In case there is a different instance destroy this one.
+                Destroy(gameObject);
+            }
+            else {
+                control = this;
+            }
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        int floorSize = 5; // must be odd number
-        generateFloor(floorSize, floorSize);
+        //Restart();
+    }
+
+    void ResetClearMap() {
+        clear_map = new bool[,] {
+        { false, false, false, false, false},
+        { false, false, false, false, false},
+        { false, false, true, false, false},
+        { false, false, false, false, false},
+        { false, false, false, false, false}
+        };
+    }
+
+    public void Restart(bool usePreset = false) {
+        if (!usePreset) {
+            int floorSize = 5; // must be odd number
+            generateFloor(floorSize, floorSize);
+        }
+        ResetClearMap();
         logMap();
         SceneManager.LoadScene(map[locY, locX]);
+    }
+
+    public void Exit() {
+        Application.Quit();
     }
 
     void logMap() {
@@ -64,6 +90,12 @@ public class gameManager : MonoBehaviour
             for (int j = 0; j < map.GetLength(1); j++) {
                 if (map[i, j] == null) {
                     output += "x";
+                }
+                else if (map[i, j].Equals("ItemRoom")) {
+                    output += "i";
+                }
+                else if (map[i, j].Equals("BossRoom")) {
+                    output += "b";
                 }
                 else {
                     //output += map[i, j];
@@ -78,7 +110,14 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameObject.FindWithTag("Player") == null && SceneManager.GetActiveScene().name != "StartScreen") {
+            Reset();
+        }
+    }
+
+    void Reset() {
+        SceneManager.LoadScene("StartScreen");
+        Destroy(gameObject);
     }
 
     string convertLocToStr(int offsetX = 0, int offsetY = 0) {
@@ -88,7 +127,9 @@ public class gameManager : MonoBehaviour
 
     
     private void generateFloor(int w, int h) {
-        string[] rooms = new string[] {"FourSwarmRoom", "SpikeRoom"};
+        // change array to List<>
+        // fix dumb location handling
+        string[] rooms = new string[] {"FourSwarmRoom", "SpikeRoom", "DiscShooterRoom", "FourShooterRoom", "SnailRoom"};
 
         int num_rooms = 1;
 
@@ -113,11 +154,10 @@ public class gameManager : MonoBehaviour
             string[] neighbors = new string[] { convertLocToStr(0, -1), convertLocToStr(1, 0), convertLocToStr(0, 1), convertLocToStr(-1, 0) };
 
             foreach (string n in neighbors) {
-                int coinFlip = Random.Range(0,2);
+                int coinFlip = Random.Range(0,2+num_rooms/3);
                 try {
-                    if (coinFlip == 1) { }
+                    if (coinFlip >= 1) { }
                     else if (map[(int)char.GetNumericValue(n[1]), (int)char.GetNumericValue(n[0])] != null) { }
-                    else if (getNumNeighbors(locX, locY) >= 2) { }
                     else {
                         int roomIndex = Random.Range(0, rooms.Length);
                         map[(int)char.GetNumericValue(n[1]), (int)char.GetNumericValue(n[0])] = rooms[roomIndex];
@@ -132,30 +172,55 @@ public class gameManager : MonoBehaviour
         // reset start location
         locX = w / 2;
         locY = h / 2;
+
+        placeSpecialRooms(1, w, h, new string[] {"BossRoom", "ItemRoom"});
+
+    }
+
+    void placeSpecialRooms(int k_neighbors, int w, int h, string[] rooms) {
+        List<string> valid_spots = new List<string>();
+        for (int y = 0; y < h; y++) {
+            for (int x = 0; x < w; x++) {
+                if (map[y, x] == null) {
+                    int k = getNumNeighbors(x, y);
+                    if (k == k_neighbors) {
+                        valid_spots.Add(x.ToString() + y.ToString());
+                    }
+                }
+            }
+        }
+
+
+        for (int i = 0; i < rooms.Length; i++) {
+            int spotIndex = Random.Range(0, valid_spots.Count);
+            string n = valid_spots[spotIndex];
+            valid_spots.RemoveAt(spotIndex);
+            map[(int)char.GetNumericValue(n[1]), (int)char.GetNumericValue(n[0])] = rooms[i];
+        }
     }
 
     int getNumNeighbors(int x, int y) {
         int neighbor = 0;
         try {
-            if (map[locY-1, locX] != null) {
+            if (map[y-1, x] != null) {
                 neighbor += 1;
             }
         }
         catch (System.IndexOutOfRangeException) {}
         try {
-            if (map[locY, locX+1] != null) {
+            if (map[y, x+1] != null) {
                 neighbor += 1;
             }
         }
         catch (System.IndexOutOfRangeException) {}
         try {
-            if (map[locY+1, locX] != null) {
+            if (map[y+1, x] != null) {
                 neighbor += 1;
             }
         }
         catch (System.IndexOutOfRangeException) {}
         try {
-            if (map[locY, locX-1] != null) {
+            if (map[y, x-1] != null) {
                 neighbor += 1;
             }
         }
@@ -165,6 +230,11 @@ public class gameManager : MonoBehaviour
     }
 
     public void moveRoom(string direction) {
+        if (map[locY, locX] == "BossRoom") {
+            Restart();
+            return;
+        }
+
         // this should be changed
         clear_map[locY, locX] = true;
         if (direction == "NORTH") {

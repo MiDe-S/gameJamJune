@@ -17,6 +17,17 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     public void Move(float dirX, float dirY)
     {
-        myRigidbody.velocity = new Vector2(dirX * moveSpeed, dirY * moveSpeed);
+        float normalizer = System.Math.Max(System.Math.Abs(dirX), System.Math.Abs(dirY));
+        dirX = normalizer != 0 ? dirX / normalizer : 0;
+        dirY = normalizer != 0 ? dirY / normalizer : 0;
+        myRigidbody.velocity = new Vector2(dirX * moveSpeed, dirY  * moveSpeed);
+    }
+
+    public void setMoveSpeed(float speed) {
+        moveSpeed = speed;
+    }
+
+    public void multiplyMoveSpeed(float multiplier) {
+        moveSpeed = moveSpeed * multiplier;
     }
 }

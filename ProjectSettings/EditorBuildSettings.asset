@@ -17,4 +17,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartRoom.unity
     guid: ffafe51aeed011c46b45615deeaa63f0
+  - enabled: 1
+    path: Assets/Scenes/ItemRoom.unity
+    guid: 28d6b2d8d79f1324d91aaef5f0a60931
+  - enabled: 1
+    path: Assets/Scenes/BossRoom.unity
+    guid: 0c5be7f565d36a04da97ddd1f06eb3a4
+  - enabled: 1
+    path: Assets/Scenes/FourShooterRoom.unity
+    guid: 0f61cec21f1ad1d4e885840fd03ded00
+  - enabled: 1
+    path: Assets/Scenes/DiscShooterRoom.unity
+    guid: a20f1a0a43674e84abba7224b6c79c21
+  - enabled: 1
+    path: Assets/Scenes/SnailRoom.unity
+    guid: de5e8e23db43094468b7d4922eca0995
   m_configObjects: {}

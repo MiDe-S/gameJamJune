@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Attack))]
 public class PlayerAttack : MonoBehaviour
 {
     public int damage = 100;

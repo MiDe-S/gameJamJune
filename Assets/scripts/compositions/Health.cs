@@ -51,5 +51,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    
+    public int getHealth() {
+        return current_health * 100 / max_health;
+    }
 }

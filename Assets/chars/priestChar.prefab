@@ -15,9 +15,8 @@ GameObject:
   - component: {fileID: 4079095729567051858}
   - component: {fileID: 85925506234536089}
   - component: {fileID: 4700763116943001799}
-  - component: {fileID: 3914906708933087901}
-  - component: {fileID: 1481933298742135564}
   - component: {fileID: 6023868490591341322}
+  - component: {fileID: 2991208859211048195}
   m_Layer: 0
   m_Name: priestChar
   m_TagString: Player
@@ -193,32 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c51774605d832041aa524a36c3ab883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swingAttack: {fileID: 2356683862622367747, guid: 8d10783db6d172a4584b8a5f0c23a2b4, type: 3}
---- !u!114 &3914906708933087901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3289002572479071788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dde07a28e08fb7641bf910068bdd6139, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 100
---- !u!114 &1481933298742135564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3289002572479071788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85271cdccec9c89488e627bc6ca08286, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  projVelocity: {x: 0, y: 0}
 --- !u!95 &6023868490591341322
 Animator:
   serializedVersion: 5
@@ -240,3 +214,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2991208859211048195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289002572479071788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239568815a708484c8734cfd1da6bfef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 2356683862622367747, guid: 8d10783db6d172a4584b8a5f0c23a2b4, type: 3}
+  fireRate: 10

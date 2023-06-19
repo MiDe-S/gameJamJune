@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Movement))]
+[RequireComponent(typeof(ProjectileShoot))]
 public class InputController : MonoBehaviour
 {
 
@@ -10,12 +11,11 @@ public class InputController : MonoBehaviour
 
     public static InputController control;
 
-    public GameObject swingAttack;
-    public float fireRate = 30;
-    private float currentFireRate = 0;
     private Animator anim;
 
-    private int moveState = 0; 
+    private int moveState = 0;
+
+    public int projVelocity = 0;
 
     void Awake()
     {
@@ -45,8 +45,8 @@ public class InputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float dirX = Input.GetAxisRaw("HorizontalMove");
-        float dirY = Input.GetAxisRaw("VerticalMove");
+        float dirX = Input.GetAxisRaw("Horizontal");
+        float dirY = Input.GetAxisRaw("Vertical");
         movement.Move(dirX, dirY);
 
         if (dirX == 0 && dirY == 0) {
@@ -77,29 +77,24 @@ public class InputController : MonoBehaviour
             moveState = 4;
         }
 
-        if (currentFireRate >= 0) {
-            currentFireRate -= 60 * Time.deltaTime;
-        }
-        else {
-            if (Input.GetButtonDown("Fire1") || dirX != 0 || dirY != 0) {
-                currentFireRate = fireRate;
-                if (moveState == 1) {
-                    // Instantiate the projectile at the position and rotation of this transform
-                    GameObject clone = Instantiate(swingAttack, transform.position, Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z));
-                }
-                else if (moveState == 2) {
-                    // Instantiate the projectile at the position and rotation of this transform
-                    GameObject clone = Instantiate(swingAttack, transform.position, Quaternion.Euler(0, 0, 90));
-                }
-                else if (moveState == 3) {
-                    // Instantiate the projectile at the position and rotation of this transform
-                    GameObject clone = Instantiate(swingAttack, transform.position, Quaternion.Euler(0, 180, 0));
-                }
-                else if (moveState == 4) {
-                    // Instantiate the projectile at the position and rotation of this transform
-                    GameObject clone = Instantiate(swingAttack, transform.position, Quaternion.Euler(0, 0, 270));
-                }
+
+        if (Input.GetButtonDown("Fire1") || dirX != 0 || dirY != 0) {
+            if (moveState == 1) {
+                gameObject.GetComponent<ProjectileShoot>().Shoot(Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z), new Vector2(dirX * projVelocity, dirY * projVelocity));
+            }
+            else if (moveState == 2) {
+                gameObject.GetComponent<ProjectileShoot>().Shoot(Quaternion.Euler(0, 0, 90), new Vector2(dirX * projVelocity, dirY * projVelocity));
+            }
+            else if (moveState == 3) {
+                gameObject.GetComponent<ProjectileShoot>().Shoot(Quaternion.Euler(0, 180, 0), new Vector2(dirX * projVelocity, dirY * projVelocity));
+            }
+            else if (moveState == 4) {
+                gameObject.GetComponent<ProjectileShoot>().Shoot(Quaternion.Euler(0, 0, 270), new Vector2(dirX * projVelocity, dirY * projVelocity));
             }
         }
+    }
+
+    public void setProjSpeed(int speed) {
+        projVelocity = speed;
     }
 }

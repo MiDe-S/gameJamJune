@@ -19,23 +19,7 @@ public class AISimpleWalk : MonoBehaviour
     void Update()
     {
         if (player != null) {
-            float dirX = 0;
-            float dirY = 0;
-            if (player.transform.position.x > transform.position.x) {
-                dirX = 1;
-            }
-            else {
-                dirX = -1;
-            }
-
-            if (player.transform.position.y > transform.position.y) {
-                dirY = 1;
-            }
-            else {
-                dirY = -1;
-            }
-
-            movement.Move(dirX, dirY);
+            movement.Move(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y);
         }
         else {
             movement.Move(0, 0);
