@@ -230,11 +230,6 @@ public class gameManager : MonoBehaviour
     }
 
     public void moveRoom(string direction) {
-        if (map[locY, locX] == "BossRoom") {
-            Restart();
-            return;
-        }
-
         // this should be changed
         clear_map[locY, locX] = true;
         if (direction == "NORTH") {
@@ -255,28 +250,31 @@ public class gameManager : MonoBehaviour
     public void loadDoorsCallback(GameObject room) {
         try {
             if (map[locY-1, locX] != null) {
-                room.GetComponent<managerScript>().loadNorthDoor();
+                room.GetComponent<managerScript>().loadNorthDoor(map[locY-1, locX] == "BossRoom");
             }
         }
         catch (System.IndexOutOfRangeException) {}
         try {
             if (map[locY, locX+1] != null) {
-                room.GetComponent<managerScript>().loadEastDoor();
+                room.GetComponent<managerScript>().loadEastDoor(map[locY, locX+1] == "BossRoom");
             }
         }
         catch (System.IndexOutOfRangeException) {}
         try {
             if (map[locY+1, locX] != null) {
-                room.GetComponent<managerScript>().loadSouthDoor();
+                room.GetComponent<managerScript>().loadSouthDoor(map[locY+1, locX] == "BossRoom");
             }
         }
         catch (System.IndexOutOfRangeException) {}
         try {
             if (map[locY, locX-1] != null) {
-                room.GetComponent<managerScript>().loadWestDoor();
+                room.GetComponent<managerScript>().loadWestDoor(map[locY, locX-1] == "BossRoom");
             }
         }
         catch (System.IndexOutOfRangeException) {}
+        if (map[locY, locX] == "BossRoom") {
+            room.GetComponent<managerScript>().loadCenterDoor(true);
+        }
 
         if (clear_map[locY, locX]) {
             room.GetComponent<managerScript>().roomCleared();

@@ -36,8 +36,8 @@ public class ProjectileShoot : MonoBehaviour
         }
     }
 
-    public void multiplyFireRate(float multiplier) {
-        fireRate = fireRate * multiplier;
+    public void addFireRate(float rate) {
+        fireRate = fireRate + rate;
     }
 
     public bool canShoot() {
@@ -46,6 +46,6 @@ public class ProjectileShoot : MonoBehaviour
 
     public void setProj(GameObject newProj) {
         projectile = newProj;
-        gameObject.GetComponent<InputController>().projVelocity = 20;
+        //gameObject.GetComponent<InputController>().projVelocity = 20;
     }
 }

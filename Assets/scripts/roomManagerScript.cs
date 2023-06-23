@@ -8,6 +8,7 @@ public class managerScript : MonoBehaviour
     static readonly Vector2 EAST_DOOR = new Vector2(10, 0);
     static readonly Vector2 SOUTH_DOOR = new Vector2(0, -5);
     static readonly Vector2 WEST_DOOR = new Vector2(-10, 0);
+    static readonly Vector2 CENTER_DOOR = new Vector2(0, 0);
 
 
     public GameObject door;
@@ -46,20 +47,43 @@ public class managerScript : MonoBehaviour
         loadWestDoor();
     }
 
-    public void loadNorthDoor() {
+    public void loadNorthDoor(bool isBossDoor = false) {
         GameObject north_door = Instantiate(door, NORTH_DOOR, Quaternion.Euler(0, 0, 0));
+        if (isBossDoor) {
+            makeBossDoor(north_door);
+        }
     }
 
-    public void loadEastDoor() {
+    public void loadEastDoor(bool isBossDoor = false) {
         GameObject east_door = Instantiate(door, EAST_DOOR, Quaternion.Euler(0, 0, -90));
+        if (isBossDoor) {
+            makeBossDoor(east_door);
+        }
     }
 
-    public void loadSouthDoor() {
+    public void loadSouthDoor(bool isBossDoor = false) {
         GameObject south_door = Instantiate(door, SOUTH_DOOR, Quaternion.Euler(0, 0, 180));
+        if (isBossDoor) {
+            makeBossDoor(south_door);
+        }
     }
 
-    public void loadWestDoor() {
+    public void loadWestDoor(bool isBossDoor = false) {
         GameObject west_door = Instantiate(door, WEST_DOOR, Quaternion.Euler(0, 0, 90));
+        if (isBossDoor) {
+            makeBossDoor(west_door);
+        }
+    }
+
+    public void loadCenterDoor(bool isBossDoor = true) {
+        GameObject center_door = Instantiate(door, CENTER_DOOR, Quaternion.Euler(0, 0, 0));
+        if (isBossDoor) {
+            makeBossDoor(center_door);
+        }
+    }
+
+    void makeBossDoor(GameObject door) {
+        door.GetComponent<SpriteRenderer>().color = new Color(215, 0, 0);
     }
 
     public void increaseEnemyCount(int x = 1) {
@@ -103,6 +127,10 @@ public class managerScript : MonoBehaviour
         else if (exit_position == WEST_DOOR) {
             gameController.moveRoom("WEST");
             player.transform.position = (EAST_DOOR + new Vector2(-1, 0));
+        }
+        else if (exit_position == CENTER_DOOR) {
+            gameController.Restart();
+            player.transform.position = (CENTER_DOOR);
         }
 
     }

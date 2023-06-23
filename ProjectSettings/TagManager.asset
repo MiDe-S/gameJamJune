@@ -8,6 +8,8 @@ TagManager:
   - Attack
   - EventManager
   - Exit
+  - HealthUI
+  - Item
   layers:
   - Default
   - TransparentFX

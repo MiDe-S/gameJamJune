@@ -27,7 +27,7 @@ public class Movement : MonoBehaviour
         moveSpeed = speed;
     }
 
-    public void multiplyMoveSpeed(float multiplier) {
-        moveSpeed = moveSpeed * multiplier;
+    public void addMoveSpeed(float speed) {
+        moveSpeed = moveSpeed + speed;
     }
 }

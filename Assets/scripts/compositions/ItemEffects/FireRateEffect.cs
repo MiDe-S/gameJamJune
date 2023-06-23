@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class FireRateEffect : Effect
 {
-    public float multiplier = 0.5f;
+    public float change = -2f;
 
     public override void ApplyTo(GameObject obj) {
-        obj.GetComponent<ProjectileShoot>().multiplyFireRate(multiplier);
+        obj.GetComponent<ProjectileShoot>().addFireRate(change);
     }
 }

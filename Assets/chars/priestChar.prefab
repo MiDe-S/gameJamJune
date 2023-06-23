@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 712043578483968724}
   - component: {fileID: 2795458309235473874}
   - component: {fileID: 3691061709220272776}
-  - component: {fileID: 7135956560630899314}
+  - component: {fileID: 8282042867353559275}
   - component: {fileID: 4079095729567051858}
   - component: {fileID: 85925506234536089}
   - component: {fileID: 4700763116943001799}
   - component: {fileID: 6023868490591341322}
   - component: {fileID: 2991208859211048195}
+  - component: {fileID: 3293502652150090689}
   m_Layer: 0
   m_Name: priestChar
   m_TagString: Player
@@ -118,8 +119,8 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &7135956560630899314
-CircleCollider2D:
+--- !u!61 &8282042867353559275
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -150,9 +151,19 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.08}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.0625, y: 2.0625}
+    newSize: {x: 4.44, y: 4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.74
+  m_Size: {x: 0.91, y: 1.09}
+  m_EdgeRadius: 0
 --- !u!114 &4079095729567051858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +178,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   max_health: 100
   invuln_period: 30
+  effects:
+  - {fileID: 3293502652150090689}
 --- !u!114 &85925506234536089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c51774605d832041aa524a36c3ab883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projVelocity: {x: 0, y: 0}
+  projVelocity: 0
 --- !u!95 &6023868490591341322
 Animator:
   serializedVersion: 5
@@ -228,3 +241,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 2356683862622367747, guid: 8d10783db6d172a4584b8a5f0c23a2b4, type: 3}
   fireRate: 10
+--- !u!114 &3293502652150090689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289002572479071788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 032fd440dd439a7479f45393220da139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

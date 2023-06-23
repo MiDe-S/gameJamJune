@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 172128034968866096}
   m_Layer: 0
   m_Name: ShrinkRay
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3195f820154049499321a8889c8af20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplier: 2
+  speed_change: 6
 --- !u!114 &5053504815203544350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00061814f07187f449b97b71cbcf84dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplier: 0.5
+  size_change: 0.8
 --- !u!58 &6834018934042476087
 CircleCollider2D:
   m_ObjectHideFlags: 0

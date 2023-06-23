@@ -13,6 +13,8 @@ public class Health : MonoBehaviour
 
     private SpriteRenderer mySprite;
 
+    public List<HealthEffect> effects;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,10 @@ public class Health : MonoBehaviour
         if (invuln_time <= 0) {
             current_health -= damage;
             invuln_time = invuln_period;
+
+            for (int i = 0; i < effects.Count; i++) {
+                effects[i].onHealthChange(current_health);
+            }
 
             if (current_health <= 0) {
                 Destroy(gameObject);

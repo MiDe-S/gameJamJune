@@ -94,7 +94,7 @@ public class InputController : MonoBehaviour
         }
     }
 
-    public void setProjSpeed(int speed) {
-        projVelocity = speed;
+    public void addProjSpeed(int speed) {
+        projVelocity += speed;
     }
 }

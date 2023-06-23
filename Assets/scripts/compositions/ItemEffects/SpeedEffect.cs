@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SpeedEffect : Effect
 {
-    public float multiplier = 2f;
+    public float speed_change = 4f;
 
     public override void ApplyTo(GameObject obj) {
-        obj.GetComponent<Movement>().multiplyMoveSpeed(multiplier);
+        obj.GetComponent<Movement>().addMoveSpeed(speed_change);
     }
 }

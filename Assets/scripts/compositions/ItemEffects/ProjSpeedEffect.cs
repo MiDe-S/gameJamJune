@@ -7,6 +7,6 @@ public class ProjSpeedEffect : Effect
     public int multiplier = 20;
 
     public override void ApplyTo(GameObject obj) {
-        obj.GetComponent<InputController>().setProjSpeed(20);
+        obj.GetComponent<InputController>().addProjSpeed(20);
     }
 }
