@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 644251527944381530}
   - component: {fileID: 4624274084762608275}
   - component: {fileID: 2070786467641863526}
+  - component: {fileID: 5642277116290303441}
   m_Layer: 0
   m_Name: Swarm
   m_TagString: Enemy
@@ -33,11 +34,11 @@ Transform:
   m_GameObject: {fileID: 3989654093774671677}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7, y: 1.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2452075758138514836
 SpriteRenderer:
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6029f63e41539114783d896bd8d8252c, type: 3}
+  m_Sprite: {fileID: 178127511, guid: e6d25c4c91019b44da5cd7caa1a2d375, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -179,6 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   max_health: 100
   invuln_period: 0
+  effects: []
 --- !u!114 &644251527944381530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,3 +219,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+--- !u!95 &5642277116290303441
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3989654093774671677}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ddcc0a92432d12c4a987829503a2654b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

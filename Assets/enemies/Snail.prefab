@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4624274084762608275}
   - component: {fileID: 2070786467641863526}
   - component: {fileID: 8531767943608882352}
+  - component: {fileID: 4759263889441966964}
   m_Layer: 0
   m_Name: Snail
   m_TagString: Enemy
@@ -33,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 3989654093774671677}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8ce70fc5f534da3418701ab4ea324fb2, type: 3}
+  m_Sprite: {fileID: -1647714717, guid: d71ec8212f62eda4b9e812c4ce904703, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -152,7 +153,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.33
+  m_Radius: 0.54
 --- !u!114 &9047684506401204698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   max_health: 100
   invuln_period: 0
+  effects: []
 --- !u!114 &644251527944381530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,3 +220,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargeCoolDown: 30
+--- !u!95 &4759263889441966964
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3989654093774671677}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 70cdda23c1a02884fb390b1b24f52535, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -450,6 +450,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4579164868788505588, guid: e27741887d4be0e479f213e7415610da, type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5039909127230800830, guid: e27741887d4be0e479f213e7415610da, type: 3}
       propertyPath: m_Name
       value: DrLinguino

@@ -7,7 +7,7 @@ public class ProjectileShoot : MonoBehaviour
     public GameObject projectile;
     public float fireRate = 10;
     private float currentFireRate = 0;
-    private float projSpeed = 20;
+    public float projSpeed = 20;
 
     // Start is called before the first frame update
     void Start()

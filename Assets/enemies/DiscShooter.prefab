@@ -37,7 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8383425682489368427
 SpriteRenderer:
@@ -105,6 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   max_health: 150
   invuln_period: 10
+  effects: []
 --- !u!114 &9205702331119591125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 3503345423340877176, guid: 5ac7967f8bffcff4d8b7b302a21a606f, type: 3}
   fireRate: 45
+  projSpeed: 13
 --- !u!50 &6885851552291300481
 Rigidbody2D:
   serializedVersion: 4
